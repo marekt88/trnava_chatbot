@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPOFAI Test website</title>
+    <style>
+        body {
+            background-image: url('https://raw.githubusercontent.com/marekt88/impofai/master/Github%20images/impofai%20multiple%20bg.png');
+            background-color: black;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        @media (max-width: 767px) {
+            body {
+                background-image: url('https://raw.githubusercontent.com/marekt88/impofai/master/Github%20images/impofai%20multiple%20bg.png');
+            }
+        }
+        .content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #333;
+        }
+        #chatButton {
+            padding: 10px 20px;
+            background-color: #0055ff;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .floating-text-button {
+        position: fixed;
+        right: 15px;
+        bottom: 100px;
+        background-color: #B4B002;
+        color: black;
+        padding: 11.25px;
+        border-radius: 26.25px 26.25px 0 26.25px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 13.5px;
+        font-weight: bold;
+        cursor: pointer;
+        transform: scale(0.75);
+        opacity: 0;
+        animation: 
+            float-in 1s 2s forwards,
+            pulse 2s infinite 3s;
+    }
+
+        .blue-circle {
+            position: fixed;
+            bottom: 75px;
+            right: 25px;
+            width: 15px;
+            height: 15px;
+            background-color: rgb(102, 102, 255);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 9999;
+            opacity: 0;
+            animation: opacity-in 1s 2s forwards;
+        }
+        .close-button {
+            position: fixed;
+            right: 15px;
+            bottom: 145px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            opacity: 0;
+            animation: opacity-in 1s 2s forwards;
+            z-index: 10000;
+        }
+        @keyframes opacity-in {
+            0% {
+                transform: scale(0.25);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes float-in {
+            0% {
+                bottom: -50%;
+                transform: scale(0.25);
+                opacity: 0;
+            }
+            100% {
+                bottom: 100px;
+                transform: scale(0.85);
+                opacity: 0.65;
+            }
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.85);
+            }
+            50% {
+                transform: scale(0.90);
+            }
+            100% {
+                transform: scale(0.85);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Testovacia stránka</h1>
+        <p>Tu viete testovať chatbot predtým ako sa vloží na stránku :)</p>
+        <p class="highlight">Kliknite na ikonku dole vpravo -></p>
+        <button id="chatButton">Otvoriť chat</button>
+    </div>
+
+    <script type="text/javascript">
+        function openChat() {
+            if (window.voiceflow && window.voiceflow.chat) {
+                window.voiceflow.chat.open();
+            } else {
+                console.error('Voiceflow chat not loaded yet.');
+            }
+        }
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+              window.voiceflow.chat.load({
+                verify: { projectID: '67a8ff3122a0f7fbdd5dbad9' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production'
+              });
+            }
+            v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+        })(document, 'script');
+
+        document.getElementById('chatButton').addEventListener('click', function() {
+            openChat();
+        });
+      </script>
+</body>
+</html>
